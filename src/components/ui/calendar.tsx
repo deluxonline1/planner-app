@@ -1,0 +1,20 @@
+"use client";
+
+import * as React from "react";
+import { DayPicker } from "react-day-picker";
+import { cn } from "@/lib/utils";
+
+import "react-day-picker/style.css";
+
+export type CalendarProps = React.ComponentProps<typeof DayPicker>;
+
+/** Mesečni kalendar — stilizovan kroz globals.css (.rdp) */
+function Calendar({ className, mode = "single", ...props }: CalendarProps) {
+  return (
+    <div className={cn("rounded-xl border border-border bg-card p-3 shadow-sm", className)}>
+      <DayPicker mode={mode} {...props} />
+    </div>
+  );
+}
+
+export { Calendar };
