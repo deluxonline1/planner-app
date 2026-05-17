@@ -31,7 +31,7 @@ export default function RegisterPage() {
     },
   });
 
-  function onSubmit(_data: RegisterValues) {
+  function onSubmit() {
     router.push("/dashboard");
   }
 
