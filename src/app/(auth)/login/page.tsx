@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 
 import { loginSchema, type LoginValues } from "@/lib/validations/auth";
+import { supabase } from "@/lib/supabase/client";
 
 import { Button } from "@/components/ui/button";
 
@@ -34,7 +35,17 @@ export default function LoginPage() {
     },
   });
 
-  function onSubmit() {
+  async function onSubmit(data: LoginValues) {
+    const { error } = await supabase.auth.signInWithPassword({
+      email: data.email,
+      password: data.password,
+    });
+
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
     router.push("/dashboard");
   }
 
